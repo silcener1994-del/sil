@@ -1,0 +1,36 @@
+{
+  "name": "dsh-plugin-sk0613-boot",
+  "version": "1.0.0",
+  "description": "SK0613 boot animation for DeepSeek Harness (Web UI)",
+  "keywords": [
+    "dsh-plugin"
+  ],
+  "license": "UNLICENSED",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./client": "./dist/client.js"
+  },
+  "files": [
+    "dist",
+    "src",
+    "cordis.patch.yml"
+  ],
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --platform=node --format=cjs --external:@deepseek-ai/* --outfile=dist/index.js && esbuild src/client/index.ts --bundle --platform=browser --format=cjs --external:@deepseek-ai/* --outfile=dist/client.js"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web"
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "*"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.0"
+  }
+}
